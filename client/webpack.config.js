@@ -25,27 +25,31 @@ module.exports = () => {
         title: 'Webpack Plugin',
       }),
       new MiniCssExtractPlugin(),
-      new WorkboxPlugin.GenerateSW()
+      new WorkboxPlugin.GenerateSW(),
+      new InjectManifest({
+        swSrc: './src-sw.js',
+        swDest: 'src-sw.js',
+      }),
+      new WebpackPwaManifest({
+        fingerprints: false,
+        inject: true,
+        name: 'Text Edit',
+        short_name: 'Edit',
+        description: 'Get text',
+        background_color: '#225ca3',
+        theme_color: '#225ca3',
+        start_url: './',
+        publicPath: './',
+        icons: [
+          {
+            src: path.resolve('src/images/logo.png'),
+            sizes: [96, 128, 192, 256, 384, 512],
+            destination: path.join('assets', 'icons'),
+          },
+        ],
+      }),
     ],
 
-    new WebpackPwaManifest({
-      fingerprints: false,
-      inject: true,
-      name: 'Text Edit',
-      short_name: 'Edit',
-      description: 'Get text',
-      background_color: '#225ca3',
-      theme_color: '#225ca3',
-      start_url: './',
-      publicPath: './',
-      icons: [
-        {
-          src: path.resolve('src/images/logo.png'),
-          sizes: [96, 128, 192, 256, 384, 512],
-          destination: path.join('assets', 'icons'),
-        },
-      ],
-    }),
 
     module: {
       rules: [
