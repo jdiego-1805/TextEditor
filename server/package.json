@@ -13,6 +13,7 @@
         "express": "^4.17.1"
     },
     "devDependencies": {
+        "mini-css-extract-plugin": "^2.7.6",
         "nodemon": "^2.0.4"
     }
 }
